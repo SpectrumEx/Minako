@@ -18,13 +18,13 @@ def inline_roll(call):
     markup.add(main_button)
     bot.delete_message(call.message.chat.id, call.message.message_id)
     bot.send_message(call.message.chat.id, "доделать.", reply_markup=markup)
-  # chat_id = message.chat.id
-     #text = message.text[50:]  # Skip the "/roll" part of the message
-  # dice, sides = (1, 50)
-     #  if text:
-  #   dice, sides = map(int, text.split('d'))
-  # result = [random.randint(1, sides) for _ in range(dice)]
-  # bot.send_message(chat_id, "Допустим это: " + "  ".join(map(str, result)))
+    #chat_id = call.message.chat.id
+    #text = call.text[50:]  # Skip the "/roll" part of the message
+    #dice, sides = (1, 50)
+   # if text:
+    #  dice, sides = map(int, text.split('d'))
+    #result = [random.randint(1, sides) for _ in range(dice)]
+   # bot.send_message(chat_id, "Допустим это: " + "  ".join(map(str, result)))
 def inline_cat(call):
     markup = types.InlineKeyboardMarkup()
     markup.add(cat_button, main_button)

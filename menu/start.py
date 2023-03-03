@@ -26,6 +26,7 @@ def inline_main(call):
         markup.add(info_button, games_button, adm_button)
     else:
         markup.add(info_button, games_button)
+    bot.delete_message(call.message.chat.id, call.message.message_id)
     with open('img/start.jpg', 'rb') as f:
             photo = f.read()
             res = bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption=config.startAnswer)
@@ -35,15 +36,16 @@ def inline_main(call):
 def inline_info(call):
     markup = types.InlineKeyboardMarkup() ###Создаем inline кнопки:                                                                                             
     markup.add(news_button, about_button, support_button, main_button) ###Добавляем кнопки
+    bot.delete_message(call.message.chat.id, call.message.message_id)
     with open('img/info.jpg', 'rb') as f:
             photo = f.read()
             res = bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption="Вы можете получить любую интересующую вас информацию. Для связи с разработчиком напишите на почту koroleevskiy@gmail.com")
             message_id = res.message_id
     bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=message_id, reply_markup=markup)
-    #bot.delete_message(call.message.chat.id, call.message.message_id) ###Удаляем последнее сообщение бота
 def inline_games(call):
     markup = types.InlineKeyboardMarkup()
     markup.add(cat_button, roll_button, compl_button, main_button)
+    bot.delete_message(call.message.chat.id, call.message.message_id)
     with open('img/games.jpg', 'rb') as f:
             photo = f.read()
             res = bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption="Развлечения специально для вас!")
@@ -52,6 +54,7 @@ def inline_games(call):
 def inline_adm(call):
     markup = types.InlineKeyboardMarkup()
     markup.add(stop_button, restart_button, main_button)
+    bot.delete_message(call.message.chat.id, call.message.message_id)
     with open('img/adm.jpg', 'rb') as f:
             photo = f.read()
             res = bot.send_photo(chat_id=call.message.chat.id, photo=photo, caption="Твоя админпанель")
