@@ -2,6 +2,7 @@ import telebot
 import requests
 from telebot import types 
 import random
+import menu
 
 API_TOKEN = '6012099586:AAGZXoBI7uEXFmVUqcYt2OVjnh6PAb9XRvY'
 
@@ -24,20 +25,11 @@ def send_welcome(message):
         markup.add(info_button, entertainment_button)
     bot.send_message(message.chat.id, "Привет! Я бот. Чем я могу помочь?", reply_markup=markup)
 
-def inline_main(call):
-        markup = types.InlineKeyboardMarkup() ###Создаем inline кнопки:                                                                                             
-        news_button = types.InlineKeyboardButton("Что нового?", callback_data='news')                                                 
-        about_button = types.InlineKeyboardButton("Обо мне", callback_data='about')
-        support_button = types.InlineKeyboardButton("Поддержать разработчика", callback_data='support')
-        markup.add(news_button, about_button, support_button) ###Добавляем кнопки
-        bot.delete_message(call.message.chat.id, call.message.message_id) ###Удаляем последнее сообщение бота
-        bot.send_message(call.message.chat.id, "Вы можете получить любую интересующую вас информацию.\nДля связи с разработчиком напишите на почту koroleevskiy@gmail.com", reply_markup=markup) ###Отправляем текст и кнопки
-
 # Обработчик inline кнопок в стартовом меню
 @bot.callback_query_handler(func=lambda call: True)
 def callback_main(call):
     if call.data == 'info': ###Кнопка "Информация"
-        inline_main(call)
+        menu.start.inline_main(call)
     elif call.data == 'entertainment':
         markup = types.InlineKeyboardMarkup()
         cat_button = types.InlineKeyboardButton("Котик", callback_data='cat')
